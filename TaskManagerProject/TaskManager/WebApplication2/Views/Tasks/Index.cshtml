@@ -1,0 +1,76 @@
+﻿@* @model IEnumerable<WebApplication2.Models.Task> *@ 
+@model WebApplication2.Models.ViewModels.TaskFilterViewModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Start by creating a new task to organize your activities.</h1>
+<h2>
+    <a asp-action="Create">Create New Task</a>
+</h2>
+
+<div class="container-fluid">
+    <div class="row">
+        <!-- Left Sidebar -->
+        <form asp-action="Index" method="get">
+            <div class="form-group">
+                <label for="TitleSearch">Search by Title:</label>
+                <input type="text" id="TitleSearch" name="titleSearch" class="form-control" placeholder="Enter task title" value="@Model.TitleSearch">
+            </div>
+            <div class="form-group">
+                <label>Status Filter:</label>
+                <select id="SelectedStatus" name="selectedStatus" asp-items="@ViewBag.StatusFilterValues" class="form-control">
+                    <option value="">All</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="PriorityFilter">Priority Filter:</label>
+                <select id="PriorityFilter" name="priorityFilter" class="form-control">
+                    <option value="">All</option>
+                    <option value="High">High</option>
+                    <option value="Medium">Medium</option>
+                    <option value="Low">Low</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Apply Filters</button>
+        </form>
+
+
+
+        <!-- Main Content -->
+        <div class="col-md-9">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>@Html.DisplayNameFor(model => model.Tasks.First().Title)</th>
+                        <th>@Html.DisplayNameFor(model => model.Tasks.First().Description)</th>
+                        <th>@Html.DisplayNameFor(model => model.Tasks.First().CreatedOn)</th>
+                        <th>@Html.DisplayNameFor(model => model.Tasks.First().Status)</th>
+                        <th>@Html.DisplayNameFor(model => model.Tasks.First().Category)</th>
+                        <th>@Html.DisplayNameFor(model => model.Tasks.First().Priority)</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var task in Model.Tasks)
+                    {
+                        <tr>
+                            <td>@Html.DisplayFor(modelItem => task.Title)</td>
+                            <td>@Html.DisplayFor(modelItem => task.Description)</td>
+                            <td>@Html.DisplayFor(modelItem => task.CreatedOn)</td>
+                            <td>@Html.DisplayFor(modelItem => task.Status)</td>
+                            <td>@Html.DisplayFor(modelItem => task.Category.Name)</td>
+                            <td>@Html.DisplayFor(modelItem => task.Priority)</td>
+                            <td>
+                                <a asp-action="Edit" asp-route-id="@task.TaskId">Edit</a> |
+                                <a asp-action="Details" asp-route-id="@task.TaskId">Details</a> |
+                                <a asp-action="Delete" asp-route-id="@task.TaskId">Delete</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

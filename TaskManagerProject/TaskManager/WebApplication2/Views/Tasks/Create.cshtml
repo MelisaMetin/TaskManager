@@ -1,0 +1,80 @@
+﻿@using WebApplication2.Models.Enums
+@model WebApplication2.Models.Task
+
+@{
+    ViewData["Title"] = "Create";
+
+
+    // var values = Enum.GetValues(typeof(Options.Sizes)).Cast<Options.Sizes>();
+
+    // IEnumerable<SelectListItem> items =
+    //     from value in values
+    //     select new SelectListItem
+    //             {
+    //                 Text = value.ToString(),
+    //                 Value = value.ToString(),
+    //                 Selected = (value.Equals(Options.Sizes.ATX_Full))
+    //             };
+}
+
+<h1>Create</h1>
+<p>Fill in the details below to add a new task to your list.</p>
+ <ul>
+    <li>Enter a clear title for the task.</li>
+    <li>Provide a detailed description for the task requirements.</li>
+    <li>Select the date when the task was created.</li>
+    <li>Set the task status to 'Active' to mark it as ongoing.</li>
+    <li>Choose a category to organize and group similar tasks.</li>
+    <li>Assign the appropriate priority level to the task.</li>
+  </ul>
+<h4>Task</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Title" class="control-label"></label>
+                <input asp-for="Title" class="form-control" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <input asp-for="Description" class="form-control" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CreatedOn" class="control-label"></label>
+                <input asp-for="CreatedOn" class="form-control" />
+                <span asp-validation-for="CreatedOn" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Status" class="control-label"></label>
+                <select asp-for="Status" asp-items="@ViewBag.StatusValues" class="form-control"></select>
+                <span asp-validation-for="Status" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CategoryId" class="control-label"></label>
+                <select asp-for="CategoryId" class="form-control" asp-items="ViewBag.Categories">
+                    <option value=""> << Select a category >> </></option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Priority" class="control-label"></label>
+                <select asp-for="Priority" asp-items="@ViewBag.PriorityValues" class="form-control"></select>
+                <span asp-validation-for="Priority" class="text-danger"></span>
+            </div> 
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

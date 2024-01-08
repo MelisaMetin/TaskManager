@@ -1,0 +1,147 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>@ViewData["Title"]</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
+
+<style>
+    .checkbox-label {
+        font-size: 22px;
+        margin-right: 40px;
+        color: #002d4d;
+    }
+
+    .custom-message {
+        color: darkgoldenrod;
+        font-size: 30px; 
+    }
+
+</style>
+
+<script>
+    function sumCheckedCheckboxes() {
+        const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+        let totalChecked = 0;
+
+        checkboxes.forEach((checkbox) => {
+            if (checkbox.checked) {
+                totalChecked++;
+            }
+        });
+
+        document.getElementById('totalChecked').textContent = totalChecked;
+
+        const customMessage = document.getElementById('message');
+        if (totalChecked > 3) {
+            customMessage.textContent = "Looks like you've got a lot on your plate! Managing all these tasks could be easier with a Task Manager!";
+            customMessage.classList.add('custom-message'); 
+        } else {
+            customMessage.textContent = "";
+            customMessage.classList.remove('custom-message'); 
+        }
+    }
+</script>
+</head>
+<body>
+
+    <div style="margin-bottom: 60px;"></div>
+
+    <div class="text-center animate__animated animate__slideInUp">
+        <h2>Work smarter with the #1 task management platform</h2>
+        <p>Task Manager is a powerful tool to manage your tasks efficiently</p>
+    </div>
+
+    <div style="margin-bottom: 120px;"></div>
+
+    <div class="d-flex justify-content-center align-items-center">
+        <div class="animate__animated animate__slideInLeft" style="width: 460px; height: 260px; border: 1px solid #ffd500; text-align: center; display: flex; flex-direction: column; justify-content: center;">
+            <h3 style="font-size: 30px; font-weight: bold; margin-bottom: 15px; color: #001e34;">Key Features</h3>
+            <ul style="list-style-position: inside; text-align: left; color: #001e34; font-size: 20px;">
+                <li>Create and organize tasks easily</li>
+                <li>Set deadlines</li>
+                <li>Delete tasks when completed</li>
+            </ul>
+        </div>
+        <div class="animate__animated animate__slideInRight" style="margin-left: 30px;">
+            <a href="/Tasks">
+                <img src="https://us.123rf.com/450wm/ghozimuhtarom/ghozimuhtarom2101/ghozimuhtarom210100014/162468398-task-typography-word-art-background-of-icon-email-message-pie-bar-chart-clip-board-target-with.jpg?ver=6" alt="Image Description" style="max-width: 100%; height: auto;">
+            </a>
+        </div>
+    </div>
+
+    <div style="margin-bottom: 120px;"></div>
+
+    <div><h3 style="font-size: 30px; font-weight: bold; color:  #001e34;">Tasks in Life</h3></div>
+    <div style="margin-bottom: 30px;"></div>
+    <div>
+        <table class="mx-auto">
+            <tr>
+                <td class="text-center" style="padding-left: 5px;">
+
+                    <input type="checkbox" id="work" name="work">
+                    <label for="work" class="checkbox-label">Work</label>
+                    <input type="checkbox" id="exercise" name="exercise">
+                    <label for="exercise" class="checkbox-label">Exercise</label>
+                    <input type="checkbox" id="familyTime" name="familyTime">
+                    <label for="familyTime" class="checkbox-label">Family Time</label>
+                    <input type="checkbox" id="friends" name="friends">
+                    <label for="friends" class="checkbox-label">Friends</label>
+                    <input type="checkbox" id="hobbies" name="hobbies">
+                    <label for="hobbies" class="checkbox-label">Hobbies</label>
+                    <input type="checkbox" id="housework" name="housework">
+                    <label for="housework" class="checkbox-label">Housework</label>
+                    <input type="checkbox" id="shopping" name="shopping">
+                    <label for="shopping" class="checkbox-label">Shopping</label>
+                    <input type="checkbox" id="appointments" name="appointments">
+                    <label for="appointments" class="checkbox-label">Appointments</label>
+                    <input type="checkbox" id="learning" name="learning">
+                    <label for="learning" class="checkbox-label">Learning</label>
+                    <input type="checkbox" id="relaxation" name="relaxation">
+                    <label for="relaxation" class="checkbox-label">Relaxation</label>
+                    <input type="checkbox" id="volunteering" name="volunteering">
+                    <label for="volunteering" class="checkbox-label">Volunteering</label>
+                    <input type="checkbox" id="travel" name="travel">
+                    <label for="travel" class="checkbox-label">Travel</label>
+                    
+                    <button onclick="sumCheckedCheckboxes()">Check</button>
+                    <p>Total Checked: <span id="totalChecked">0</span></p>
+                    <p id="message" class="custom-message"></p>
+                </td>
+                <td class="text-center" style="padding-left: 10px;">
+                    <img src="https://img.freepik.com/premium-vector/time-management-with-clock-checklist-target-time-organization-efficiency-concept_530733-2090.jpg" alt="Image Description" style="max-width: 100%; height: auto;">
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div style="margin-bottom: 120px;"></div>
+
+    <div style="margin-bottom: 60px;">
+        <p>Trusted by 180,000+ customers worldwide</p>
+    </div>
+    <div style="margin-bottom: 120px;"></div>
+
+
+    <div class="text-center">
+        <h3>Start Managing Your Tasks Today!</h3>
+        <p>Free forever. No credit card.</p>
+        <p><a href="/Identity/Account/Register">Sign up</a> or <a href="/Identity/Account/Login">Log in</a> to get started</p>
+    </div>
+
+    <div style="margin-bottom: 60px;"></div>
+</body>
+</html>
+
+
+
+
+
+
+
+
